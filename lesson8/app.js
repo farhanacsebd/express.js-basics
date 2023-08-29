@@ -7,10 +7,14 @@ app.use("/api/user",userRouter);
 
 
 app.use("/", (req,res) => {
-    res.send('<h1>I am get request at home router</h1>');
-    res.end();
+    res.statusCode = 203;
+    res.sendFile(__dirname+"/views/index.html")
 });
 
+app.use("/register",(req, res)=>{
+    res.statusCode = 200;
+    res.sendFile(__dirname+"/views/register.html")
+})
 
 app.use((req,res) => {
     res.send('<h1>404!!! Not valid url</h1>');

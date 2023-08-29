@@ -60,8 +60,13 @@ app.get('/login', (req,res)=> {
    res.append("name","Ahmed");
    res.end();
 });
+//another cookie
 app.get('/login', (req,res)=> {
-   res.append("age","Ahmed");
+   res.append("age","30");
    res.end();
 });
 ```
+----
+----
+## http request
+### http request with query parameter
