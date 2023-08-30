@@ -1,4 +1,15 @@
 ## Express.js Basics
+
+#### steps:
+
+- express package is a external package, so need to install this package.
+
+- external package install korar jonno, first e `npm init -y` dite hobe. tahole **package.json** file create hobe.
+
+- then, `npm install express nodemon install` kora lagbe.
+
+-nodemon er jonno, **package.json** file e scripts e , **"start": "nodemon index.js"** dite hobe.
+
 ### some http method
 - post , for creating
 - get , for getting
@@ -67,6 +78,25 @@ app.get('/login', (req,res)=> {
 });
 ```
 ----
-----
 ## http request
 ### http request with query parameter
+#### http request with **query parameter**
+- search `http://localhost:3001/?id=101&name=tasmi`
+```javascript
+const express = require('express');
+const app = express();
+const PORT = 3001;
+
+
+app.get("/", (req,res) =>{
+    // const id = req.query.id;
+    // const name = req.query.name;
+    const {id,name} = req.query;
+    res.send(`<h1>Student id is : ${id} and name is : ${name}</h1>`);
+})
+
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+})
+```
+----
