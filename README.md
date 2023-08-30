@@ -6,7 +6,7 @@
 
 - external package install korar jonno, first e `npm init -y` dite hobe. tahole **package.json** file create hobe.
 
-- then, `npm install express nodemon install` kora lagbe.
+- then, `npm install express nodemon` install kora lagbe.
 
 - nodemon er jonno, **package.json** file e scripts e , **"start": "nodemon index.js"** dite hobe.
 
@@ -125,3 +125,56 @@ app.get("/",(req,res) =>{
 ```
 ----
 ## Data send and receive using form
+- `index.js` file
+```javascript
+const express = require('express');
+const app = express();
+const PORT = 3000;
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.get("/register",(req,res) =>{
+    
+    res.sendFile(__dirname + "/index.html")
+})
+
+app.post("/register",(req,res) =>{
+    const fullName = req.body.fullName;
+    const age = req.body.age;
+
+    res.send(`<h1>Your name is ${fullName} and age is ${age}</h1>`)
+})
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+})
+```
+- `index.html` file
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+<body>
+<h1>Registration</h1>
+<form action="/register" method="POST">
+    <div>
+        <label for="fullName">Full Name: </label>
+        <input type="text" name="fullName" id="fullName">
+    </div>
+    <div>
+        <label for="age">Age: </label>
+        <input type="text" name="age" id="age">
+    </div>
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
+```
+----
