@@ -8,7 +8,7 @@
 
 - then, `npm install express nodemon install` kora lagbe.
 
--nodemon er jonno, **package.json** file e scripts e , **"start": "nodemon index.js"** dite hobe.
+- nodemon er jonno, **package.json** file e scripts e , **"start": "nodemon index.js"** dite hobe.
 
 ### some http method
 - post , for creating
@@ -79,8 +79,7 @@ app.get('/login', (req,res)=> {
 ```
 ----
 ## http request
-### http request with query parameter
-#### http request with **query parameter**
+### http request with `query parameter`
 - search `http://localhost:3001/?id=101&name=tasmi`
 ```javascript
 const express = require('express');
@@ -99,4 +98,30 @@ app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 })
 ```
+### http request with `route parameter`
+- search `http://localhost:3001/userId/101/userAge/25`
+```javascript
+app.get("/userid/:id/userAge/:age",(req,res) =>     {
+    const id = req.params.id;
+    const age = req.params.age;
+
+    res.send(`<h1>Student id is : ${id} and age is : ${age}</h1>`);
+})
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+})
+```
+
+### http request with `headers`
+```javascript
+app.get("/",(req,res) =>{
+    const id = req.header("id");
+    const name = req.header("name");
+
+    res.send(`<h1>Student id is : ${id} and name is : ${name}</h1>`)
+})
+```
 ----
+## Data send and receive using form
