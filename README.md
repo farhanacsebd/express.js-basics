@@ -126,10 +126,11 @@ app.get("/",(req,res) =>{
 ----
 ## Data send and receive using form
 #### handling json file or form using `body-parser`.
-1. step1 - `https://www.npmjs.com/package/body-parser`
-2. step2 - `npm i body-parser` 
+1. step1 - Goto [@body-parser link](https://www.npmjs.com/package/body-parser)
+2. step2 - Then install `npm i body-parser` 
 3. step3 - `app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());`
+
 - `index.js` file 
 
 ```javascript
@@ -182,5 +183,31 @@ app.listen(PORT, () => {
 </form>
 </body>
 </html>
+```
+----
+## Regular expression in express routing
+```javascript
+const express = require("express");
+const app = express();
+const PORT = 3000;
+
+app.get("/products/:id([0-9]+)",(req,res) =>[
+    res.send(`<h1>ID = ${req.params.id}</h1>`)
+])
+
+
+app.get("/products/:title([a-zA-Z]{3})",(req,res) =>[
+    res.send(`<h1>Title = ${req.params.title}</h1>`)
+])
+
+app.use("*",(req,res) =>{
+    res.status(404).send({
+        message:"not a valid route",
+    });
+})
+
+app.listen(PORT,() =>{
+    console.log(`Server is running at http://localhost:${PORT}`);
+})
 ```
 ----
