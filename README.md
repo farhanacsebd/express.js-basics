@@ -125,7 +125,13 @@ app.get("/",(req,res) =>{
 ```
 ----
 ## Data send and receive using form
-- `index.js` file
+#### handling json file or form using `body-parser`.
+1. step1 - `https://www.npmjs.com/package/body-parser`
+2. step2 - `npm i body-parser` 
+3. step3 - `app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());`
+- `index.js` file 
+
 ```javascript
 const express = require('express');
 const app = express();
