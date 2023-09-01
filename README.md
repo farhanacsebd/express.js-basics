@@ -223,16 +223,54 @@ app.listen(PORT,() =>{
 - GitLab / Heroku support the usage of environment variables.
 
 ### How to use .env variables
-- step 1: create an .env file in the root directory.`Example: ` **.env**
-- step 2: define environment variable using uppercase letter and for multiple word use underscore.`Example: ` 
+- step 1: create an .env file in the root directory.`Example:` **.env**
+- step 2: define environment variable using uppercase letter and for multiple word use underscore.`Example:` 
 **PORT** 
 **DATABASE_URL**
-- step 3: assign the values without double quotation and space.`Example: `**PORT=3000**
-- step 4: you can make a comment using ( # ) in environment file.`Example: ` #SERVER PORT
+- step 3: assign the values without double quotation and space.`Example:`**PORT=3000**
+- step 4: you can make a comment using ( # ) in environment file.`Example:` **#SERVER PORT**
 
 ## server port
 - step 5: `npm install dotenv`
 - step 6: **require('dotenv').config()**;
 - step 7: access the env variables from anywhere using process.env.PORT
-`Example: ` **const PORT = process.env.PORT || 3000;**
+`Example:`
+**const PORT = process.env.PORT || 3000;**
 - step 8: Go to .gitignore and keep .env in .gitignore
+
+----
+## Middleware
+```javascript
+const express = require("express");
+const app = express();
+const PORT = 3000;
+
+
+const myMiddleWare = (req,res,next) =>{
+    console.log('MiddleWare function');
+
+    req.currentTime = new Date(Date.now());
+    next();
+}
+
+// app.use(myMiddleWare);
+
+app.get("/", myMiddleWare,(req,res) =>{
+    console.log('I am home. ' + req.currentTime);
+    res.send("<h1>I am home router</h1>")
+})
+
+app.listen(PORT,() =>{
+    console.log(`Server is running at http://localhost:${PORT}`);
+})
+```
+----
+----
+## Static MiddleWare
+- Image / style নিয়ে কাজ করার জন্য static middleware ব্যবহার করতে হবে।
+- **app.use(express.static("views"))**;
+- views হচ্ছে static folder এর নাম, যার ভিতরে সকল static data থাকবে। for example: image, style css.
+```javascript
+
+```
+----
