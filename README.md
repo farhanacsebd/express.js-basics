@@ -125,7 +125,7 @@ app.get("/",(req,res) =>{
 ```
 ----
 ## Data send and receive using form
-#### handling json file or form using `body-parser`.
+### handling json file or form using `body-parser`.
 1. step1 - Goto [@body-parser link](https://www.npmjs.com/package/body-parser)
 2. step2 - Then install `npm i body-parser` 
 3. step3 - `app.use(bodyParser.urlencoded({ extended: false }));
@@ -211,3 +211,28 @@ app.listen(PORT,() =>{
 })
 ```
 ----
+## Environment file (.env file)
+- .env file full form environment file
+- secret/ hidden file, only you can access it
+
+### Why .evn file
+- to store private environment variables for your application. Example:
+1. http PORT to listen the server
+2. database url
+3. api keys etc.
+- GitLab / Heroku support the usage of environment variables.
+
+### How to use .env variables
+- step 1: create an .env file in the root directory.`Example: ` **.env**
+- step 2: define environment variable using uppercase letter and for multiple word use underscore.`Example: ` 
+**PORT** 
+**DATABASE_URL**
+- step 3: assign the values without double quotation and space.`Example: `**PORT=3000**
+- step 4: you can make a comment using ( # ) in environment file.`Example: ` #SERVER PORT
+
+## server port
+- step 5: `npm install dotenv`
+- step 6: **require('dotenv').config()**;
+- step 7: access the env variables from anywhere using process.env.PORT
+`Example: ` **const PORT = process.env.PORT || 3000;**
+- step 8: Go to .gitignore and keep .env in .gitignore
